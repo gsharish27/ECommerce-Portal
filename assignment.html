@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Portal</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Product Items</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <li><a href="#about-us">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <h1>Welcome to Our E-Commerce Portal</h1>
+            <p>Your one-stop shop for all your needs!</p>
+        </section>
+
+        <section id="products">
+            <h1>Product Items</h1>
+            <div class="product-item">
+                <h2>Product 1</h2>
+                <p>Description of Product 1.</p>
+                <button>Add to Wishlist</button>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-item">
+                <h2>Product 2</h2>
+                <p>Description of Product 2.</p>
+                <button>Add to Wishlist</button>
+                <button>Add to Cart</button>
+            </div>
+        </section>
+
+        <section id="contact-us">
+            <h1>Contact Us</h1>
+            <form>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <textarea id="message" name="message" rows="4" placeholder="Your Message..." required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+
+        <section id="about-us">
+            <h1>About Us</h1>
+            <p>We are a global e-commerce platform connecting buyers and sellers worldwide.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 E-Commerce Portal</p>
+    </footer>
+</body>
+</html>
+CSS (style.css)
+css
+Copy code
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+2. User Registration and Login Form Validation
+We'll create registration and login forms that validate user input before submission using JavaScript.
+
+HTML (login_register.html)
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#register">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="login">
+        <h2>Login</h2>
+        <form id="login-form" onsubmit="return validateLogin()">
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" name="login-email" required>
+
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" name="login-password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <section id="register">
+        <h2>Register</h2>
+        <form id="register-form" onsubmit="return validateRegistration()">
+            <label for="reg-name">Name:</label>
+            <input type="text" id="reg-name" name="reg-name" required>
+
+            <label for="reg-email">Email:</label>
+            <input type="email" id="reg-email" name="reg-email" required>
+
+            <label for="reg-password">Password:</label>
+            <input type="password" id="reg-password" name="reg-password" required>
+
+            <button type="submit">Register</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 E-Commerce Portal</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+JavaScript (script.js)
+javascript
+Copy code
+// User Registration Validation
+function validateRegistration() {
+    let name = document.getElementById('reg-name').value;
+    let email = document.getElementById('reg-email').value;
+    let password = document.getElementById('reg-password').value;
+
+    // Validate if fields are not empty
+    if (name === "" || email === "" || password === "") {
+        alert("All fields must be filled.");
+        return false;
+    }
+
+    // Simple email validation
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    return true;
+}
+
+// User Login Validation
+function validateLogin() {
+    let email = document.getElementById('login-email').value;
+    let password = document.getElementById('login-password').value;
+
+    if (email === "" || password === "") {
+        alert("Please enter both email and password.");
+        return false;
+    }
+
+    // Simple email validation
+    let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!email.match(emailPattern)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    return true;
+}
+3. Displaying Items, Wishlist, Comments & Reviews, Customer Care, Reporting Options
+We'll create sections on the page where users can see product items, leave comments and reviews, and interact with customer care and reporting options.
+
+HTML (product_page.html)
+html
+Copy code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#products">Product Items</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+                <li><a href="#about-us">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="products">
+            <h1>Product Items</h1>
+            <div class="product-item">
+                <h2>Product 1</h2>
+                <p>Description of Product 1.</p>
+                <button>Add to Wishlist</button>
+                <button>Add to Cart</button>
+            </div>
+            <div class="product-item">
+               
+
+
+Continue generating
+
+
+Add
+
+Voice
+
+ChatGPT can make mistakes. Check important info. See Cookie Preferences.
